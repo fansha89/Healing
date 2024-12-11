@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulai Curhat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mulai Curhat</h2>
+    <form id="curhat-form-element">
+        <label for="user-name">Nama Anda:</label><br>
+        <input type="text" id="user-name" name="user_name" required><br><br>
+        <label for="message">Pesan Curhat:</label><br>
+        <textarea id="message" name="message" required></textarea><br><br>
+        <button type="submit">Kirim Curhat</button>
+    </form>
+
+    <h2>Daftar Curhat</h2>
+    <ul id="curhat-messages">
+        <!-- Pesan curhat akan dimuat di sini -->
+    </ul>
+
+    <script>
+        // Kirim curhat ke server
+        document.getElementById('curhat-form-element').addEventListener('submit', function (e) {
+            e.preventDefault(); // Mencegah refresh halaman
+
+            const userName = document.getElementById('user-name').value;
+            const message = document.getElementById('message').value;
+
+            fetch('/curhat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_name: userName, message })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    loadCurhats(); // Memuat daftar curhat terbaru
+                    document.getElementById('curhat-form-element').reset(); // Reset form
+                })
+                .catch(error => console.error('Gagal mengirim curhat:', error));
+        });
+
+        // Memuat daftar curhat dari server
+        function loadCurhats() {
+            fetch('/curhats')
+                .then(response => response.json())
+                .then(data => {
+                    const curhatList = document.getElementById('curhat-messages');
+                    curhatList.innerHTML = ''; // Kosongkan daftar curhat sebelumnya
+                    data.forEach(curhat => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${curhat.user_name}: ${curhat.message} (Waktu: ${new Date(curhat.created_at).toLocaleString()})`;
+                        curhatList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Gagal memuat daftar curhat:', error));
+        }
+
+        // Memuat daftar curhat saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadCurhats);
+    </script>
+</body>
+</html>

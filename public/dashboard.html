@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Healing App</div>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/150" alt="Avatar" class="profile-avatar">
+            <h2 id="userName">Nama Pengguna</h2>
+            <p id="userEmail">Email: example@example.com</p>
+            <p id="userSince">Member Since: 2023-01-01</p>
+            <div class="profile-details">
+                <h3>Informasi Lainnya</h3>
+                <ul>
+                    <li><strong>Nomor Telepon:</strong> 081234567890</li>
+                    <li><strong>Alamat:</strong> Jl. Contoh No. 1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulasi data pengguna (dapat diambil dari server setelah login)
+        const user = {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            memberSince: '2023-01-01',
+            phone: '081234567890',
+            address: 'Jl. Contoh No. 1'
+        };
+
+        // Menampilkan data pengguna ke halaman
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('userEmail').textContent = 'Email: ' + user.email;
+        document.getElementById('userSince').textContent = 'Member Since: ' + user.memberSince;
+
+        // Menampilkan informasi lainnya
+        const userDetails = document.querySelector('.profile-details ul');
+        const phoneItem = document.createElement('li');
+        phoneItem.innerHTML = `<strong>Nomor Telepon:</strong> ${user.phone}`;
+        const addressItem = document.createElement('li');
+        addressItem.innerHTML = `<strong>Alamat:</strong> ${user.address}`;
+        userDetails.appendChild(phoneItem);
+        userDetails.appendChild(addressItem);
+
+        // Logout function
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Logic logout (misalnya dengan menghapus session atau token)
+            alert('Anda telah logout!');
+            window.location.href = '/login.html'; // Redirect ke halaman login
+        });
+    </script>
+</body>
+</html>
