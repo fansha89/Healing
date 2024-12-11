@@ -1,5 +1,5 @@
 By :
--Sandy Yopa
--Frans Delon
--Muhammad Fansha
--Andarika Syachlimar
+-Sandy Yopa Boangmanalu
+-Frans Delon Sihite
+-Muhammad Fansha Fakhriza
+-Andarika Syachlimar Restu R
