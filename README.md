@@ -1,3 +1,12 @@
+HEALING
+Platform Berbasis AI untuk Mendukung Perkembangan Kesehatan Mental
+
+Dipersiapkan oleh:
+- Sandy Yopa Boangmanalu		          (2211102165)
+- Muhammad Fansha Fakhriza	          (2211102154)
+- Frans Delon Sihite			            (2211102172)
+- Andarika Syachlimar Restu Rustamaji	(2211102173)
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
